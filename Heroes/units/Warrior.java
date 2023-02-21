@@ -1,18 +1,14 @@
 package Heroes.units;
 
-public abstract class Warrior extends BaseHero {
-    private int power;
+public class Warrior extends BaseHero {
+    int delivery;
 
-    public int getPower() {
-        return power;
+    public Warrior(String hero, String name, int health, int speed, int maxDamage, int minDamage, int attack, int protection, int delivery) {
+        super(hero, name, health, speed, maxDamage, minDamage, attack, protection);
+        this.delivery = delivery;
     }
 
-    public void setPower(int power) {
-        this.power = power;
-    }
-
-    public Warrior(String heroID, int health, int endurance, int speed, int power) {
-        super(heroID, health, endurance, speed);
-        this.power = power;
+    public String getInfo() {
+        return String.format("%s delivery: %d", super.getInfo(), this.delivery); 
     }
 }

@@ -2,11 +2,13 @@ package Heroes.units;
 
 public class Arbalester extends Shooter {
 
-    public Arbalester(String heroID) {
-        super(heroID, 43, 12, 54, 32);
+    public Arbalester(){
+        super("Arbalester", "Mikle", 10, 200, 4, 3, 2, 
+        6, 16);    
     }
+
+    /**Переопределить getInfo так, чтобы он возвращал строки:"Я крестьянин", "Я снайпер"  */
     @Override
-    public String getInfo() {
-        return "Арбалетчик " + heroID;
-    }
+    public String getInfo() { return "Я Арбалетчик"; }
+
 }

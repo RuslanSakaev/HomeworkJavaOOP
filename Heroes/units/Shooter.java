@@ -1,18 +1,16 @@
 package Heroes.units;
 
-public abstract class Shooter extends BaseHero{
-    /**Боеприпасы*/
-    protected int ammunition;
-
-    public Shooter(String heroID, int health, int endurance, int speed, int ammunition) {
-        super(heroID, health, endurance, speed);
-        this.ammunition = ammunition;
-    }
-
-    protected boolean aiming() {
-        if (endurance < 100) {
-            return false;
+public class Shooter extends BaseHero{
+    int shoot;
+    
+        public Shooter(String hero, String name, int health, int speed, int maxDamage, int minDamage, int attack, int protection, int shoot) {
+            super(hero, name, health, speed, maxDamage, minDamage, attack, protection);
+            this.shoot = shoot;
+    
         }
-        else return true;
-    }
-}
+        
+        public String getInfo() {
+            return String.format("%s Ammunition: %d Gun: %s Markmanship: %d", 
+            super.getInfo());       
+        }
+}    

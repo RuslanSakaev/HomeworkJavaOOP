@@ -1,12 +1,14 @@
 package Heroes.units;
 
+/**Копейщик */
 public class Spearman extends Warrior {
 
-    public Spearman(String heroID) {
-        super(heroID, 64, 43, 32, 43);
-    }
-    @Override
-    public String getInfo() {
-        return "Копейщик " + heroID;
-    }
+    public Spearman(){
+       super("Spearman__", "Bredy", 10, 4, 3, 1, 4, 5, 0); 
+   }
+
+   /**Переопределить getInfo так, чтобы он возвращал строки:"Я крестьянин", "Я снайпер"  */
+   @Override
+   public String getInfo() { return "Я Копейщик ";}
+
 }

@@ -1,20 +1,16 @@
 package Heroes.units;
 
-public class Villager extends BaseHero {
-    private int seeds;
+public class Villager extends Warrior {
+  
 
-    public int getSeeds() {
-        return seeds;
+    public Villager() {
+        super("Villager__", "Green", 1, 1, 1, 0, 1, 1, 1);
+       
     }
-    public void setSeeds(int seeds) {
-        this.seeds = seeds;
-    }
-    public Villager(String heroID) {
-        super(heroID, 32, 43, 54);
-        this.seeds = 23;
-    }
+
+
+    /**Переопределить getInfo так, чтобы он возвращал строки:"Я крестьянин", "Я снайпер"  */
     @Override
-    public String getInfo() {
-        return "Крестьянин " + heroID;
-    }
+    public String getInfo() {return "Я Крестьянин ";}
+
 }

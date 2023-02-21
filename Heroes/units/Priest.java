@@ -1,18 +1,16 @@
 package Heroes.units;
 
-public abstract class Priest extends BaseHero {
-    private int mana;
+public class Priest extends BaseHero {
+    protected int mana;
+     
 
-    public int getMana() {
-        return mana;
-    }
 
-    public void setMana(int mana) {
-        this.mana = mana;
-    }
+public Priest(String hero, String name, int health, int speed, int maxDamage, int minDamage, int mana, int attack, int protection) {
+    super(hero, name, health, speed, maxDamage, minDamage, attack, protection);
+    this.mana = mana;
+}
 
-    public Priest(String heroID, int health, int endurance, int speed, int mana) {
-        super(heroID, health, endurance, speed);
-        this.mana = mana;
-    }
+public String getInfo() {
+    return String.format("%s Mana: %d", super.getInfo(), this.mana); 
+}
 }
