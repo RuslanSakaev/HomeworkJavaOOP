@@ -19,8 +19,8 @@ public abstract class Human implements GameInterfase {
     public String toString() {
         return name +
                 " H:" + Math.round(hp) +
-                " D:" + defense +
-                " A:" + attack +
+                " D:" + coords.posX +
+                " A:" + coords.posY +
                 " Dmg:" + Math.round(Math.abs((damageMin+damageMax)/2)) +
                 " " + state;
     }
