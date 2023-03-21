@@ -21,27 +21,28 @@ public class main {
         allTeam.addAll(darkTeam);
         sortTeam(allTeam);
 
-        boolean a = true;
+        // boolean a = true;
         int countHoly = 0;
         int countDark = 0;
-        while (a) {
+        while (true) {
             View.view();
             user_input.nextLine();
             countHoly = 0;
             countDark = 0;
             for (Human human : allTeam) {
                 if (holyTeam.contains(human)) {
-                    if (human.step(holyTeam, darkTeam))
+                    if (human.step(holyTeam, darkTeam) == false)
                         countHoly++;
                 } else {
-                    if ((human.step(darkTeam, holyTeam)))
+                    if (human.step(darkTeam, holyTeam) == false)
                         countDark++;
                 }
                 ;
             }
             if (countHoly == UNITS || countDark == UNITS)
-                a = false;
+                break;
         }
+        View.view();
         if (countHoly == UNITS)
             System.out.print("darkTeam wins");
         else {
