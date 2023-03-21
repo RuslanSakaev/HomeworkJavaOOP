@@ -7,17 +7,18 @@ public abstract class Mag extends Human {
     protected int maxMana;
 
     @Override
-    public void step(ArrayList<Human> team1, ArrayList<Human> team2) {
-        for (Human human: team1) {
+    public boolean step(ArrayList<Human> team1, ArrayList<Human> team2) {
+        for (Human human : team1) {
             if (human.hp < human.maxHp & !human.state.equals("Die")) {
                 human.getDamage(damageMax);
-                return;
+                return false;
             }
         }
+        return true;
     }
 
     public Mag(String name, float hp, int maxHp, int attack, int damageMin, int damageMax, int defense,
-               int speed, int mana, int maxMana, int posX, int posY) {
+            int speed, int mana, int maxMana, int posX, int posY) {
         super(name, hp, maxHp, attack, damageMin, damageMax, defense, speed, posX, posY);
         this.mana = mana;
         this.maxMana = maxMana;

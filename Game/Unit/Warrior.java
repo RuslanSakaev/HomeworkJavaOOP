@@ -10,22 +10,30 @@ public abstract class Warrior extends Human {
     }
 
     @Override
-    public void step(ArrayList<Human> team1ArrayList, ArrayList<Human> team2ArrayList) {
+    public boolean step(ArrayList<Human> team1ArrayList, ArrayList<Human> team2ArrayList) {
         if (state.equals("Die"))
-            return;
+            return false;
         Human victim = team2ArrayList.get(findNearest(team2ArrayList));
         if (victim.coords.getDistance(coords) < 2) {
             float damage = (victim.defense - attack) > 0 ? damageMin
                     : (victim.defense - attack) < 0 ? damageMax : (damageMin + damageMax) / 2;
             victim.getDamage(damage);
         } else {
-            if (coords.chooseWay(victim.coords).posY > 0) {
-                coords.posY--;
+            Vector2D tempvc = coords.chooseWay(victim.coords);
+            if (Math.abs(tempvc.posX) < Math.abs(tempvc.posY)) {
+                if (coords.chooseWay(victim.coords).posY > 0) {
+                    coords.posY--;
+                } else {
+                    coords.posY++;
+                }
             } else {
-                coords.posY++;
+                if (coords.chooseWay(victim.coords).posY > 0) {
+                    coords.posX--;
+                } else {
+                    coords.posX++;
+                }
             }
         }
-
+        return true;
     }
-
 }

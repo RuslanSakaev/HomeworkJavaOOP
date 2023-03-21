@@ -12,8 +12,9 @@ public class Farmer extends Human {
     }
 
     @Override
-    public void step(ArrayList<Human> team1, ArrayList<Human> team2) {
+    public boolean step(ArrayList<Human> team1, ArrayList<Human> team2) {
         if (!state.equals("Die")) state = "Stand";
+        return false;
     }
 
     @Override

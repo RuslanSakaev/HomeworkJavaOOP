@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Random;
 import java.util.Scanner;
+
 public class main {
     static final int UNITS = 10;
     public static ArrayList<Human> allTeam = new ArrayList<>();
@@ -12,7 +13,7 @@ public class main {
 
     public static void main(String[] args) {
         Scanner user_input = new Scanner(System.in);
-        System.out.print("Press Enter to begin.");
+        System.out.print("Нажмите Enter что бы начать!");
         user_input.nextLine();
         createTeam(holyTeam, 0, 1);
         createTeam(darkTeam, 3, 10);
@@ -20,18 +21,37 @@ public class main {
         allTeam.addAll(darkTeam);
         sortTeam(allTeam);
 
-        while (true){
+        boolean a = true;
+        int countHoly = 0;
+        int countDark = 0;
+        while (a) {
             View.view();
             user_input.nextLine();
-            for (Human human: allTeam) {
-                if (holyTeam.contains(human)) human.step(holyTeam, darkTeam);
-                else human.step(darkTeam, holyTeam);
+            countHoly = 0;
+            countDark = 0;
+            for (Human human : allTeam) {
+                if (holyTeam.contains(human)) {
+                    if (human.step(holyTeam, darkTeam))
+                        countHoly++;
+                } else {
+                    if ((human.step(darkTeam, holyTeam)))
+                        countDark++;
+                }
+                ;
             }
+            if (countHoly == UNITS || countDark == UNITS)
+                a = false;
+        }
+        if (countHoly == UNITS)
+            System.out.print("darkTeam wins");
+        else {
+            System.out.print("holyTeam wins");
         }
     }
-    static void createTeam (ArrayList team, int offset, int posY) {
+
+    static void createTeam(ArrayList team, int offset, int posY) {
         for (int i = 0; i < UNITS; i++) {
-            int rnd = new Random().nextInt(4)+offset;
+            int rnd = new Random().nextInt(4) + offset;
             switch (rnd) {
                 case (0):
                     team.add(new Sniper(getName(), new Vector2D(i + 1, posY)));
@@ -57,16 +77,20 @@ public class main {
             }
         }
     }
-    static void sortTeam (ArrayList<Human> team){
+
+    static void sortTeam(ArrayList<Human> team) {
         team.sort(new Comparator<Human>() {
             @Override
             public int compare(Human t0, Human t1) {
-                if (t1.getSpeed() == t0.getSpeed()) return (int) (t1.getHp() - t0.getHp());
-                else  return (int) (t1.getSpeed() - t0.getSpeed());
+                if (t1.getSpeed() == t0.getSpeed())
+                    return (int) (t1.getHp() - t0.getHp());
+                else
+                    return (int) (t1.getSpeed() - t0.getSpeed());
             }
         });
     }
+
     static String getName() {
-        return String.valueOf(Names.values()[new Random().nextInt(Names.values().length-1)]);
+        return String.valueOf(Names.values()[new Random().nextInt(Names.values().length - 1)]);
     }
 }
